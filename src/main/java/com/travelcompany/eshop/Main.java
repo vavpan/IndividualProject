@@ -60,7 +60,7 @@ public class Main {
 //        travelService.notPurchasedTickets();
 
 
-        travelService.offeredItinerariesPerDestination();
+//        travelService.offeredItinerariesPerDestination();
     }
 }
 
