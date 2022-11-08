@@ -1,12 +1,8 @@
 package com.travelcompany.eshop.model;
 
 import com.travelcompany.eshop.enums.Category;
-import lombok.*;
 
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
+
 public class Customer extends PersistenceClass{
 
 
@@ -16,6 +12,16 @@ public class Customer extends PersistenceClass{
     private String nationality;
     private Category category;
 
+    public Customer(){
+
+    }
+    public Customer(String name, String email, String address, String nationality, Category category) {
+        this.name = name;
+        this.email = email;
+        this.address = address;
+        this.nationality = nationality;
+        this.category = category;
+    }
 
     public String getName() {
         return name;
