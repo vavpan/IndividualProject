@@ -10,7 +10,6 @@ import com.travelcompany.eshop.model.Ticket;
 import com.travelcompany.eshop.repository.CustomerRepository;
 import com.travelcompany.eshop.repository.ItineraryRepository;
 import com.travelcompany.eshop.repository.TicketRepository;
-
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -86,12 +85,28 @@ public class TravelServiceImpl implements TravelService {
         }
     }
 
+//    @Override
+//    public void printTickets() {
+//        List<Ticket> tickets = ticketRepository.read();
+//        for (Ticket ticket : tickets) {
+//            System.out.println(ticket.getId() + "  " + ticket.getPassengerId() + "  " + ticket.getItineraryId() + "  " + ticket.getPaymentMethod() + "  " + ticketDiscount(ticket.getPaymentAmount() , ticket));
+//        }
+//    }
+
     @Override
     public void printTickets() {
         List<Ticket> tickets = ticketRepository.read();
-        for (Ticket ticket : tickets) {
-            System.out.println(ticket.getId() + "  " + ticket.getPassengerId() + "  " + ticket.getItineraryId() + "  " + ticket.getPaymentMethod() + "  " + ticketDiscount(ticket.getPaymentAmount() , ticket));
+        List<Customer> customers = customerRepository.read();
+
+        for (Customer customer : customers) {
+            for (Ticket ticket : tickets) {
+                if (customer.getId() == ticket.getId()){
+                    System.out.println(ticket.getId() + "  " + ticket.getPassengerId() + "  " + ticket.getItineraryId() + "  " + ticket.getPaymentMethod() + "  " + ticketDiscount(ticket.getPaymentAmount(), ticket, customer));
+
+                }
+            }
         }
+
     }
 
     @Override
@@ -118,15 +133,28 @@ public class TravelServiceImpl implements TravelService {
     }
 
     @Override
-    public List<Customer> notPurchasedTickets() {
-        List<Customer> customers = customerRepository.read();
-        List<Ticket> tickets = ticketRepository.read();
-
-
-        return null;
+    public double ticketDiscount(double amount, Ticket ticket, Customer customer) {
+        double discount;
+        if (customer.getCategory().toString() == "Individual" && ticket.getPaymentMethod().toString() == "Cash") {
+            discount = amount * 0.20;
+            return amount + discount;
+        } else if (customer.getCategory().toString() == "Business" && ticket.getPaymentMethod().toString() == "Cash") {
+            discount = amount * 0.10;
+            return amount - discount;
+        } else if (customer.getCategory().toString() == "Individual" && ticket.getPaymentMethod().toString() == "CreditCard") {
+            discount = amount * 0.10;
+            return amount + discount;
+        } else if (customer.getCategory().toString() == "Business" && ticket.getPaymentMethod().toString() == "CreditCard") {
+            discount = amount * 0.20;
+            return amount - discount;
+        }
+        return 0;
     }
 
-
+    @Override
+    public List<Customer> notPurchasedTickets() {
+        return null;
+    }
 
     @Override
     public void printCustomers() {
@@ -136,36 +164,5 @@ public class TravelServiceImpl implements TravelService {
             System.out.println(customer.getId() + "  " + customer.getName() + "  " + customer.getEmail() + "  " + customer.getNationality() + "  " + customer.getCategory());
         }
     }
-
-    @Override
-    public double ticketDiscount(double amount,Ticket ticket) {
-        double discount;
-        if ( (ticket.getPassengerId() == 3 || ticket.getPassengerId() == 6 || ticket.getPassengerId() == 7) && ticket.getPaymentMethod().toString() == "Cash") {
-            discount = amount * 0.10;
-            return amount - discount;
-        }
-        else if ( (ticket.getPassengerId() == 3 || ticket.getPassengerId() == 6 || ticket.getPassengerId() == 7) && ticket.getPaymentMethod().toString() == "CreditCard") {
-            discount = amount * 0.20;
-            return amount - discount;
-        }
-        if ( (ticket.getPassengerId() == 1 || ticket.getPassengerId() == 2 || ticket.getPassengerId() == 4 || ticket.getPassengerId() == 5 || ticket.getPassengerId() == 8 || ticket.getPassengerId() == 9) && ticket.getPaymentMethod().toString() == "Cash") {
-            discount = amount * 0.20;
-            return amount + discount;
-        }
-        else if ( (ticket.getPassengerId() == 1 || ticket.getPassengerId() == 2 || ticket.getPassengerId() == 4 || ticket.getPassengerId() == 5 || ticket.getPassengerId() == 8 || ticket.getPassengerId() == 9) && ticket.getPaymentMethod().toString() == "CreditCard") {
-            discount = amount * 0.10;
-            return amount + discount;
-        }
-        return 0;
-    }
-
-
-
-
-
-
-
-
-
 
 }

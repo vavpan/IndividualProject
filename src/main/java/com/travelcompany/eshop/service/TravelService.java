@@ -6,7 +6,6 @@ import com.travelcompany.eshop.exceptions.TicketException;
 import com.travelcompany.eshop.model.Customer;
 import com.travelcompany.eshop.model.Itinerary;
 import com.travelcompany.eshop.model.Ticket;
-
 import java.util.List;
 
 public interface TravelService {
@@ -29,7 +28,7 @@ public interface TravelService {
 
     void offeredItinerariesPerDeparture();
 
-    double ticketDiscount(double amount, Ticket ticket);
+    double ticketDiscount(double amount, Ticket ticket , Customer customer);
 
     List<Customer> notPurchasedTickets();
 

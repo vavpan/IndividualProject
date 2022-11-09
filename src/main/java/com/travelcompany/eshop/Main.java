@@ -27,7 +27,7 @@ public class Main {
 //        travelService.printItineraries();
 
         dataImport.insertTickets();
-//        travelService.printTickets();
+        travelService.printTickets();
 
 
 //        try{

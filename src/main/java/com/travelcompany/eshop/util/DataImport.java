@@ -35,7 +35,7 @@ public class DataImport {
             "Ioannis Ioannou, iioannou@mail.com , Athens , Greek , Business",
             "Antonio Molinari , amolinari@mail.com  , Milan , Greek , Individual",
             "Frederico Rossi  , frossi@mail.com  , Milan , Italian  , Individual",
-            "Mario Conti , mconti@mail.com   , Rome , Italian , Individual",
+            "Mario Conti , mconti@mail.com   , Rome , Italian , Business",
             "Nathan Martin , nmartin@mail.com   , Lyon, French , Business",
             "Enzo Collin  , ecollin@mail.com   , Lyon , French , Individual",
             "Frederic Michel  , fmichel@mail.com  , Athens, French , Individual",
