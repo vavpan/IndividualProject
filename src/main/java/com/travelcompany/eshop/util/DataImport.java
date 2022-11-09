@@ -61,7 +61,7 @@ public class DataImport {
             "2, 3, Cash, 280",
             "3, 3, CreditCard, 280",
             "2, 4, CreditCard, 310",
-            "3, 4, Cash, 880",
+            "3, 4, Cash, 310",
             "4, 7, CreditCard, 350",
             "5, 7, CreditCard, 350",
             "2, 10, Cash, 0",

@@ -21,13 +21,15 @@ public class Main {
         DataImport dataImport = new DataImport(customerRepository,itineraryRepository,ticketRepository);
 
         dataImport.insertCustomer();
-//        travelService.printCustomers();
+//      travelService.printCustomers();
 
         dataImport.insertItinerary();
 //        travelService.printItineraries();
 
         dataImport.insertTickets();
         travelService.printTickets();
+
+
 
 
 //        try{

@@ -10,8 +10,8 @@ import com.travelcompany.eshop.model.Ticket;
 import com.travelcompany.eshop.repository.CustomerRepository;
 import com.travelcompany.eshop.repository.ItineraryRepository;
 import com.travelcompany.eshop.repository.TicketRepository;
-import java.util.Collections;
-import java.util.Comparator;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class TravelServiceImpl implements TravelService {
@@ -74,8 +74,6 @@ public class TravelServiceImpl implements TravelService {
         return null;
     }
 
-
-
     @Override
     public void printItineraries() {
         List<Itinerary> itineraries = itineraryRepository.read();
@@ -85,51 +83,28 @@ public class TravelServiceImpl implements TravelService {
         }
     }
 
-//    @Override
-//    public void printTickets() {
-//        List<Ticket> tickets = ticketRepository.read();
-//        for (Ticket ticket : tickets) {
-//            System.out.println(ticket.getId() + "  " + ticket.getPassengerId() + "  " + ticket.getItineraryId() + "  " + ticket.getPaymentMethod() + "  " + ticketDiscount(ticket.getPaymentAmount() , ticket));
-//        }
-//    }
-
     @Override
     public void printTickets() {
         List<Ticket> tickets = ticketRepository.read();
         List<Customer> customers = customerRepository.read();
 
-        for (Customer customer : customers) {
-            for (Ticket ticket : tickets) {
-                if (customer.getId() == ticket.getId()){
+        for(Ticket ticket : tickets){
+            for (Customer customer : customers){
+                if (ticket.getPassengerId() == customer.getId()){
                     System.out.println(ticket.getId() + "  " + ticket.getPassengerId() + "  " + ticket.getItineraryId() + "  " + ticket.getPaymentMethod() + "  " + ticketDiscount(ticket.getPaymentAmount(), ticket, customer));
 
                 }
             }
         }
-
     }
 
     @Override
-    public void mostTicketsPurchased() {
+    public void printCustomers() {
+        List<Customer> customers = customerRepository.read();
 
-    }
-
-    @Override
-    public void offeredItinerariesPerDestination() {
-
-    }
-
-
-
-    @Override
-    public void offeredItinerariesPerDeparture() {
-        List<Itinerary> itineraries = itineraryRepository.read();
-
-        Collections.sort(itineraries, Comparator.comparing(Itinerary::getBasicPrice));
-
-        printItineraries();
-
-
+        for (Customer customer : customers) {
+            System.out.println(customer.getId() + "  " + customer.getName() + "  " + customer.getEmail() + "  " + customer.getNationality() + "  " + customer.getCategory());
+        }
     }
 
     @Override
@@ -152,17 +127,16 @@ public class TravelServiceImpl implements TravelService {
     }
 
     @Override
-    public List<Customer> notPurchasedTickets() {
+    public List<Customer> notPurchasedTickets(Ticket ticket , Customer customer) {
+
+
         return null;
     }
 
-    @Override
-    public void printCustomers() {
-        List<Customer> customers = customerRepository.read();
 
-        for (Customer customer : customers) {
-            System.out.println(customer.getId() + "  " + customer.getName() + "  " + customer.getEmail() + "  " + customer.getNationality() + "  " + customer.getCategory());
-        }
-    }
 
 }
+
+
+
+
