@@ -21,16 +21,19 @@ import com.travelcompany.eshop.util.DataImport;
 
 import java.util.Scanner;
 
+/**
+ * Main menu when application starts
+ */
+
 public class ReportMenu {
 
-    static CustomerRepository customerRepository = new CustomerRepositoryImpl();
-    static ItineraryRepository itineraryRepository = new ItineraryRepositoryImpl();
-    static  TicketRepository ticketRepository = new TicketRepositoryImpl();
+    CustomerRepository customerRepository = new CustomerRepositoryImpl();
+    ItineraryRepository itineraryRepository = new ItineraryRepositoryImpl();
+    TicketRepository ticketRepository = new TicketRepositoryImpl();
+    TravelService travelService = new TravelServiceImpl(customerRepository,itineraryRepository, ticketRepository);
+    DataImport dataImport = new DataImport(customerRepository,itineraryRepository,ticketRepository);
 
-    static  TravelService travelService = new TravelServiceImpl(customerRepository,itineraryRepository, ticketRepository);
-    static   DataImport dataImport = new DataImport(customerRepository,itineraryRepository,ticketRepository);
-
-    public static void menu(){
+    public  void menu(){
 
         Scanner scanner = new Scanner(System.in);
         System.out.println("Please enter an option {0-4}");
@@ -58,7 +61,7 @@ public class ReportMenu {
                 System.out.println("\n");
 
 
-                menu();
+
                 break;
 
             case 1:
@@ -75,8 +78,9 @@ public class ReportMenu {
 
             case 2:
 
+                dataImport.insertItinerary();
                 travelService.offeredItineraries();
-                menu();
+
 
                 break;
 
@@ -91,8 +95,8 @@ public class ReportMenu {
 
             case 5:
 
-              customExceptions();
-              menu();
+                customExceptions();
+
 
                 break;
 
@@ -101,7 +105,7 @@ public class ReportMenu {
         }
     }
 
-    public static void customExceptions(){
+    public  void customExceptions(){
 
         try{
 

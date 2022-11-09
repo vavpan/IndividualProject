@@ -1,5 +1,8 @@
 package com.travelcompany.eshop.model;
 
+/**
+ * Parent class
+ */
 public abstract class PersistenceClass {
 
     private int id;

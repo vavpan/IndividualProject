@@ -3,6 +3,9 @@ package com.travelcompany.eshop.model;
 import com.travelcompany.eshop.enums.Category;
 
 
+/**
+ *  Category of customer
+ */
 public class Business extends Customer{
 
     public Business() {

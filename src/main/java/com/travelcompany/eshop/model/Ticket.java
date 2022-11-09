@@ -2,8 +2,9 @@ package com.travelcompany.eshop.model;
 
 import com.travelcompany.eshop.enums.PaymentMethod;
 
-
-
+/**
+ * Main Ticket class
+ */
 public class Ticket extends PersistenceClass{
 
     private int passengerId;

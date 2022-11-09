@@ -10,11 +10,13 @@ import com.travelcompany.eshop.model.Ticket;
 import com.travelcompany.eshop.repository.CustomerRepository;
 import com.travelcompany.eshop.repository.ItineraryRepository;
 import com.travelcompany.eshop.repository.TicketRepository;
-
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+
+/**
+ *  Methods implemented to provide details for customers,itineraries,tickets
+ */
 
 public class TravelServiceImpl implements TravelService {
 
@@ -65,9 +67,9 @@ public class TravelServiceImpl implements TravelService {
 
     @Override
     public void offeredItineraries() {
-       List<Itinerary> itineraries = itineraryRepository.read();
-         Collections.sort(itineraries, Comparator.comparing(Itinerary::getBasicPrice));
-         printItineraries();
+        List<Itinerary> itineraries = itineraryRepository.read();
+        Collections.sort(itineraries, Comparator.comparing(Itinerary::getBasicPrice));
+        printItineraries();
     }
 
     @Override
@@ -79,7 +81,7 @@ public class TravelServiceImpl implements TravelService {
         for(Ticket ticket : tickets){
             for (Customer customer : customers){
                 if (ticket.getPassengerId() == customer.getId()){
-                   sum = sum + ticketDiscount(ticket.getPaymentAmount(), ticket , customer);
+                    sum = sum + ticketDiscount(ticket.getPaymentAmount(), ticket , customer);
                 }
             }
         }
@@ -106,6 +108,7 @@ public class TravelServiceImpl implements TravelService {
         }
         return count;
     }
+
 
     @Override
     public void addItinerary(Itinerary itinerary) throws ItineraryException {
@@ -144,6 +147,15 @@ public class TravelServiceImpl implements TravelService {
         }
     }
 
+
+    @Override
+    public void notPurchasedTickets() {
+        List<Ticket> tickets = ticketRepository.read();
+        List<Customer> customers = customerRepository.read();
+
+
+    }
+
     @Override
     public void printCustomers() {
         List<Customer> customers = customerRepository.read();
@@ -172,14 +184,7 @@ public class TravelServiceImpl implements TravelService {
         return 0;
     }
 
-
-
-
-
-
-
-
-    }
+}
 
 
 

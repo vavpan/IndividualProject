@@ -1,11 +1,11 @@
 package com.travelcompany.eshop.model;
 
-
-
 import com.travelcompany.eshop.enums.Airline;
 import com.travelcompany.eshop.enums.AirportCode;
 
-
+/**
+ * Main Itinerary class
+ */
 public class Itinerary extends PersistenceClass{
 
     private AirportCode departureAirportCode;

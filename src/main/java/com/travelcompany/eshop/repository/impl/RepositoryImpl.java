@@ -6,12 +6,16 @@ import com.travelcompany.eshop.repository.Repository;
 import java.util.ArrayList;
 import java.util.List;
 
-
+/**
+ * Crud methods are implemented
+ * @param <T>
+ */
 public abstract class RepositoryImpl <T extends PersistenceClass> implements Repository<T> {
 
 
     private final List<T> list ;
 
+    // Increase index by 1 in order to not have "0" id values in our classes
     private int index = 1;
 
     public RepositoryImpl(){

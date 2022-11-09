@@ -11,6 +11,9 @@ import com.travelcompany.eshop.repository.CustomerRepository;
 import com.travelcompany.eshop.repository.ItineraryRepository;
 import com.travelcompany.eshop.repository.TicketRepository;
 
+/**
+ * Customer,Itinerary and Ticket objects are initialized
+ */
 public class DataImport {
 
 

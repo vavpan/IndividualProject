@@ -8,6 +8,9 @@ import com.travelcompany.eshop.model.Itinerary;
 import com.travelcompany.eshop.model.Ticket;
 import java.util.List;
 
+/**
+ * An interface to provide methods for customers,itineraries and tickets info
+ */
 public interface TravelService {
 
     void register(Customer customer) throws CustomerException;
@@ -21,6 +24,7 @@ public interface TravelService {
     void printItineraries();
 
     void printTickets();
+
     double ticketDiscount(double amount, Ticket ticket , Customer customer);
 
     void createTicket(Ticket ticket) throws TicketException;
@@ -32,6 +36,8 @@ public interface TravelService {
     double totalCostOfTicketsNoDiscount();
 
     int totalNumberOfTickets();
+
+    void notPurchasedTickets();
 
 
 

@@ -2,7 +2,9 @@ package com.travelcompany.eshop.model;
 
 import com.travelcompany.eshop.enums.Category;
 
-
+/**
+ * Main customer class
+ */
 public class Customer extends PersistenceClass{
 
 
