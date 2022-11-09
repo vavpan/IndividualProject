@@ -12,6 +12,8 @@ import com.travelcompany.eshop.repository.ItineraryRepository;
 import com.travelcompany.eshop.repository.TicketRepository;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class TravelServiceImpl implements TravelService {
@@ -59,6 +61,50 @@ public class TravelServiceImpl implements TravelService {
         }
         createTicket(ticket);
 
+    }
+
+    @Override
+    public void offeredItineraries() {
+       List<Itinerary> itineraries = itineraryRepository.read();
+         Collections.sort(itineraries, Comparator.comparing(Itinerary::getBasicPrice));
+         printItineraries();
+    }
+
+    @Override
+    public double totalCostOfTickets() {
+        List<Ticket> tickets = ticketRepository.read();
+        List<Customer> customers = customerRepository.read();
+        double sum = 0;
+
+        for(Ticket ticket : tickets){
+            for (Customer customer : customers){
+                if (ticket.getPassengerId() == customer.getId()){
+                   sum = sum + ticketDiscount(ticket.getPaymentAmount(), ticket , customer);
+                }
+            }
+        }
+        return sum;
+    }
+
+    @Override
+    public double totalCostOfTicketsNoDiscount() {
+        List<Ticket> tickets = ticketRepository.read();
+        double sum = 0;
+
+        for (Ticket ticket: tickets){
+            sum = sum + ticket.getPaymentAmount();
+        }
+        return sum;
+    }
+
+    @Override
+    public int totalNumberOfTickets() {
+        List<Ticket> tickets = ticketRepository.read();
+        int count = 0;
+        for (int i = 0; i < tickets.size(); i++){
+            count++;
+        }
+        return count;
     }
 
     @Override
@@ -126,16 +172,17 @@ public class TravelServiceImpl implements TravelService {
         return 0;
     }
 
-    @Override
-    public List<Customer> notPurchasedTickets(Ticket ticket , Customer customer) {
 
 
-        return null;
+
+
+
+
+
     }
 
 
 
-}
 
 
 

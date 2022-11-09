@@ -23,11 +23,16 @@ public interface TravelService {
     void printTickets();
     double ticketDiscount(double amount, Ticket ticket , Customer customer);
 
-    List<Customer> notPurchasedTickets(Ticket ticket , Customer customer);
-
-
-
     void createTicket(Ticket ticket) throws TicketException;
+
+    void offeredItineraries();
+
+    double totalCostOfTickets();
+
+    double totalCostOfTicketsNoDiscount();
+
+    int totalNumberOfTickets();
+
 
 
 
