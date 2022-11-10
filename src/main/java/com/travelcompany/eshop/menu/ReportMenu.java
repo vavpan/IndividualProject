@@ -40,7 +40,7 @@ public class ReportMenu {
     public  void menu(){
 
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Please enter an option {0-4}");
+        System.out.println("Please enter an option {0-7}");
         System.out.println("0: Print all(3) tables (Customers - Itineraries - Tickets");
         System.out.println("1: List of the total number and list of the cost of tickets for all customers");
         System.out.println("2: List of the total offered itineraries per destination and offered itineraries per departure");
