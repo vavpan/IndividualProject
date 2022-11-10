@@ -14,4 +14,4 @@
 
 <b> Execution </b>
 
-<p> Once you clone the project you can run it from the Main class. A menu will be created to help you view customers,itineraries and tickets info.
+<p> Once you clone the project you can run it from the Main class. A menu will be created in order to help you view customers,itineraries and tickets info.
