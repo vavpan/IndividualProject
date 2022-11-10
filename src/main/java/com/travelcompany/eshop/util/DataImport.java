@@ -14,6 +14,7 @@ import com.travelcompany.eshop.repository.TicketRepository;
 /**
  * Customer,Itinerary and Ticket objects are initialized
  */
+
 public class DataImport {
 
 
@@ -51,7 +52,7 @@ public class DataImport {
             "ATH, AMS, 22/02/2022 13:45 , SkyLines, 280",
             "ATH, PAR, 22/02/2022 14:20 , SkyLines, 310",
             "ATH, DUB, 22/02/2022 14:35 , SkyLines, 880",
-            "ATH, FRA, 22/02/2022 14:55 ,SkyLines, 380",
+            "ATH, FRA, 22/02/2022 14:55 , SkyLines, 380",
             "ATH, FRA, 22/02/2022 15:35 , SkyLines, 350",
             "ATH, MEX, 22/02/2022 16:00 , SkyLines, 1020",
             "ATH, DUB, 22/02/2022 16:35 , SkyLines, 770",

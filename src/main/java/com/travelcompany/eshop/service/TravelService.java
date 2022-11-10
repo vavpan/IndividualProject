@@ -6,6 +6,8 @@ import com.travelcompany.eshop.exceptions.TicketException;
 import com.travelcompany.eshop.model.Customer;
 import com.travelcompany.eshop.model.Itinerary;
 import com.travelcompany.eshop.model.Ticket;
+
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -17,7 +19,9 @@ public interface TravelService {
 
     void addItinerary(Itinerary itinerary) throws ItineraryException;
 
-    List<Itinerary> searchItinerary(String itineraryName);
+    List<Customer> findCustomers(int pageCount, int pageSize);
+    List<Itinerary> findItineraries(int pageCount, int pageSize);
+    List<Ticket> findTickets(int pageCount, int pageSize);
 
     void printCustomers();
 
@@ -37,9 +41,11 @@ public interface TravelService {
 
     int totalNumberOfTickets();
 
-    void notPurchasedTickets();
+    HashMap<Integer, Integer> purchasedTicketsByCustomers();
 
+    void noPurchasedTickets();
 
+    int mostTicketsPurchasedByCust();
 
-
+     void totalAmountOfTicketsPurchased();
 }

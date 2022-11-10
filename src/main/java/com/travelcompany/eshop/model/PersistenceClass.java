@@ -14,4 +14,6 @@ public abstract class PersistenceClass {
     public void setId(int id) {
         this.id = id;
     }
+
+
 }

@@ -65,4 +65,3 @@ public class Customer extends PersistenceClass{
         this.category = category;
     }
 }
-
