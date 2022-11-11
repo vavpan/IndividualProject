@@ -41,7 +41,7 @@ public class ReportMenu {
 
         Scanner scanner = new Scanner(System.in);
         System.out.println("Please enter an option {0-7}");
-        System.out.println("0: Print all(3) tables (Customers - Itineraries - Tickets");
+        System.out.println("0: Print all(3) tables (Customers - Itineraries - Tickets)");
         System.out.println("1: List of the total number and list of the cost of tickets for all customers");
         System.out.println("2: List of the total offered itineraries per destination and offered itineraries per departure");
         System.out.println("3: List of the customers with the most tickets and with the largest cost of purchases");
