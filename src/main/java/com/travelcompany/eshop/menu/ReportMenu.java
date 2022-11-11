@@ -86,6 +86,7 @@ public class ReportMenu {
             case 2:
 
                 dataImport.insertItinerary();
+//                travelService.offeredItineraries();
                 travelService.offeredItineraries();
 
 

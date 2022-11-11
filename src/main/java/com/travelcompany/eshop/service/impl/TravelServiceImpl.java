@@ -1,5 +1,6 @@
 package com.travelcompany.eshop.service.impl;
 
+import com.travelcompany.eshop.enums.AirportCode;
 import com.travelcompany.eshop.exceptions.CustomerException;
 import com.travelcompany.eshop.exceptions.ExceptionCodes;
 import com.travelcompany.eshop.exceptions.ItineraryException;
@@ -12,6 +13,7 @@ import com.travelcompany.eshop.repository.ItineraryRepository;
 import com.travelcompany.eshop.repository.TicketRepository;
 import com.travelcompany.eshop.service.TravelService;
 import java.util.*;
+import java.util.stream.Collectors;
 
 
 /**
@@ -66,12 +68,7 @@ public class TravelServiceImpl implements TravelService {
 
     }
 
-    @Override
-    public void offeredItineraries() {
-        List<Itinerary> itineraries = itineraryRepository.read();
-        Collections.sort(itineraries, Comparator.comparing(Itinerary::getBasicPrice));
-        printItineraries();
-    }
+
 
     @Override
     public double totalCostOfTickets() {
@@ -122,7 +119,7 @@ public class TravelServiceImpl implements TravelService {
                 map.put(ticket.getPassengerId(), value + 1);
             } else {
                 map.put(ticket.getPassengerId(), 1);
-            }
+            } 
         }
         return map;
     }
@@ -276,6 +273,17 @@ public class TravelServiceImpl implements TravelService {
         }
 
         System.out.println("Total cost of his payments is: " + sum);
+    }
+
+
+    @Override
+    public void offeredItineraries(){
+        List<Itinerary> itineraries = itineraryRepository.read();
+        Map<AirportCode, Long> departureMap = itineraries.stream().collect(Collectors.groupingBy(e -> e.getDepartureAirportCode(),Collectors.counting()));
+        Map<AirportCode, Long> destinationMap = itineraries.stream().collect(Collectors.groupingBy(e -> e.getDestinationAirportCode(),Collectors.counting()));
+        System.out.println("Offered itineraries per departure " + departureMap);
+        System.out.println("Offered itineraries per destination " + destinationMap);
+
     }
 
 }

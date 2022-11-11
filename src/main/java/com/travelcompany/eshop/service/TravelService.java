@@ -33,8 +33,6 @@ public interface TravelService {
 
     void createTicket(Ticket ticket) throws TicketException;
 
-    void offeredItineraries();
-
     double totalCostOfTickets();
 
     double totalCostOfTicketsNoDiscount();
@@ -48,4 +46,6 @@ public interface TravelService {
     int mostTicketsPurchasedByCust();
 
      void totalAmountOfTicketsPurchased();
+
+     void offeredItineraries();
 }
