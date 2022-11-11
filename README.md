@@ -2,7 +2,8 @@
 
 
 
-![git](https://user-images.githubusercontent.com/74924160/201204893-50299b1c-1698-4775-a127-632907e92652.png)
+![gitpic](https://user-images.githubusercontent.com/74924160/201368680-84a06508-63e9-4663-a120-826831d6e06f.png)
+
 
 
 <b> Technologies used </b>
