@@ -50,7 +50,7 @@ public class IoServiceImpl implements IoServices {
 
 
         } catch (FileNotFoundException ex) {
-            throw new CustomerException(ExceptionCodes.CUSTOMER_IS_NULL);
+            throw new CustomerException(ExceptionCodes.CUSTOMER_FILE_ERROR);
         }
 
     }
@@ -74,7 +74,7 @@ public class IoServiceImpl implements IoServices {
 
 
         } catch (FileNotFoundException ex) {
-            throw new ItineraryException(ExceptionCodes.ITINERARY_OR_CUSTOMER_NOT_EXISTS);
+            throw new ItineraryException(ExceptionCodes.ITINERARY_FILE_ERROR);
         }
 
     }
@@ -97,7 +97,7 @@ public class IoServiceImpl implements IoServices {
 
 
         } catch (FileNotFoundException ex) {
-            throw new TicketException(ExceptionCodes.ITINERARY_OR_CUSTOMER_NOT_EXISTS);
+            throw new TicketException(ExceptionCodes.TICKET_FILE_ERROR);
         }
 
     }

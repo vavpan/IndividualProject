@@ -154,14 +154,6 @@ public class ReportMenu {
             System.out.println("\n");
         }
 
-        try {
-            Ticket ticket = new Ticket(4,15, PaymentMethod.CreditCard,200);
-            travelService.createTicket(ticket);
-        }catch (TicketException e){
-            System.out.println("Ticket exception \n" + e.getMessage());
-            System.out.println("\n");
-
-        }
 
         try{
             Itinerary itinerary = new Itinerary(null,null,"22", Airline.SkyLines,300.00);
@@ -172,6 +164,14 @@ public class ReportMenu {
 
         }
 
+        try {
+            Ticket ticket = new Ticket(5,15, PaymentMethod.CreditCard,200);
+            travelService.createTicket(ticket);
+        }catch (TicketException e){
+            System.out.println("Ticket exception \n" + e.getMessage());
+            System.out.println("\n");
+
+        }
 
 
 

@@ -46,8 +46,7 @@ public class TravelServiceImpl implements TravelService {
             throw new CustomerException(ExceptionCodes.CUSTOMER_IS_NULL);
         }
         if (customer.getEmail() == null) {
-
-            throw new CustomerException(ExceptionCodes.CUSTOMER_IS_NULL);
+            throw new CustomerException(ExceptionCodes.CUSTOMER_MISSING_DATA);
         }
         if (customer.getEmail().contains("travelcompany")) {
             throw new CustomerException(ExceptionCodes.CUSTOMER_EMAIL_INVALID);
