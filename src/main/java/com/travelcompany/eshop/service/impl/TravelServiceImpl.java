@@ -347,13 +347,19 @@ public class TravelServiceImpl implements TravelService {
         double sum = 0;
         int id = mostTicketsPurchasedByCust();
 
+        // We create a customer object to save the customer with the most purchased tickets and pass it as parameter in ticketDiscount() method
+        Customer customer1 = new Customer();
+
         for (Customer customer : customers) {
             if (customer.getId() == id) {
                 System.out.println("(Id: " + customer.getId()  + ") " + "Customer -> " + customer.getName() + " has purchased most tickets");
+                customer1 = customer;
             }
         }    for (Ticket ticket : tickets) {
             if (ticket.getPassengerId() == id) {
-                sum = sum + ticket.getPaymentAmount();
+
+                sum = sum + ticketDiscount(ticket.getPaymentAmount(),ticket,customer1); // Calculate the total sum according to discount method
+
             }
         }
 
