@@ -12,7 +12,7 @@ public class Ticket extends PersistenceClass{
     private PaymentMethod paymentMethod;
     private double paymentAmount;
 
-
+    // Default Constructor
     public Ticket(){
 
     }
@@ -23,6 +23,7 @@ public class Ticket extends PersistenceClass{
         this.paymentAmount = paymentAmount;
     }
 
+    // GETTERS/SETTERS METHODS
     public int getPassengerId() {
         return passengerId;
     }
@@ -55,6 +56,8 @@ public class Ticket extends PersistenceClass{
         this.paymentAmount = paymentAmount;
     }
 
+
+    // toString method to print our values
     @Override
     public String toString() {
         return "Ticket{" +

@@ -8,7 +8,7 @@ import com.travelcompany.eshop.enums.Category;
  */
 public class Individual extends Customer{
 
-
+    // Default Constructor
     public Individual() {
     }
 

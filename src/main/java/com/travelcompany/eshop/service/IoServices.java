@@ -4,6 +4,9 @@ import com.travelcompany.eshop.exceptions.CustomerException;
 import com.travelcompany.eshop.exceptions.ItineraryException;
 import com.travelcompany.eshop.exceptions.TicketException;
 
+/**
+ * Methods signatures to save info to csv files
+ */
 public interface IoServices {
 
 

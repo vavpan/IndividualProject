@@ -27,6 +27,7 @@ public class Itinerary extends PersistenceClass{
         this.basicPrice = basicPrice;
     }
 
+    // GETTERS/SETTERS METHODS
     public AirportCode getDepartureAirportCode() {
         return departureAirportCode;
     }
@@ -67,6 +68,7 @@ public class Itinerary extends PersistenceClass{
         this.basicPrice = basicPrice;
     }
 
+    // toString method to print our values
     @Override
     public String toString() {
         return "Itinerary{" +

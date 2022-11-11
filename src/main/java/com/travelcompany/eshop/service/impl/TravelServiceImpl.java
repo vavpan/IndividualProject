@@ -34,6 +34,11 @@ public class TravelServiceImpl implements TravelService {
         this.ticketRepository = ticketRepository;
     }
 
+    /**
+     * Method to check customer exceptions
+     * @param customer
+     * @throws CustomerException
+     */
     @Override
     public void register(Customer customer) throws CustomerException {
 
@@ -53,6 +58,27 @@ public class TravelServiceImpl implements TravelService {
 
     }
 
+
+    /**
+     * Method to check itinerary exceptions
+     * @param itinerary
+     * @throws ItineraryException
+     */
+    @Override
+    public void addItinerary(Itinerary itinerary) throws ItineraryException {
+
+        if ((itinerary.getDepartureAirportCode() == null) && (itinerary.getDestinationAirportCode() == null)) {
+            throw new ItineraryException(ExceptionCodes.AIRPORT_CODE_NOT_EXISTS);
+        }
+    }
+
+
+
+    /**
+     * Method to check Ticket exceptions
+     * @param ticket
+     * @throws TicketException
+     */
     @Override
     public void createTicket(Ticket ticket) throws TicketException {
         List<Ticket> tickets = ticketRepository.read();
@@ -70,6 +96,11 @@ public class TravelServiceImpl implements TravelService {
 
 
 
+
+    /**
+     * Calculate total cost of tickets with discount
+     * @return
+     */
     @Override
     public double totalCostOfTickets() {
         List<Ticket> tickets = ticketRepository.read();
@@ -86,6 +117,10 @@ public class TravelServiceImpl implements TravelService {
         return sum;
     }
 
+    /**
+     * Calculate total cost of tickets without discount
+     * @return
+     */
     @Override
     public double totalCostOfTicketsNoDiscount() {
         List<Ticket> tickets = ticketRepository.read();
@@ -97,6 +132,10 @@ public class TravelServiceImpl implements TravelService {
         return sum;
     }
 
+    /**
+     * Calculate total number of tickets
+     * @return
+     */
     @Override
     public int totalNumberOfTickets() {
         List<Ticket> tickets = ticketRepository.read();
@@ -107,11 +146,18 @@ public class TravelServiceImpl implements TravelService {
         return count;
     }
 
+    /**
+     * We take a hashmap of customers who purchased tickets
+     * @return
+     */
     @Override
     public HashMap<Integer, Integer> purchasedTicketsByCustomers() {
         List<Ticket> tickets = ticketRepository.read();
         int value;
 
+        // We use Hashmap to save the id of the customer and how many tickets has purchased
+        // This method is called later by 2 other methods to help us calculate the customers who didn't purchase tickets
+        // and the customer who purchased the most tickets
         HashMap<Integer, Integer> map = new HashMap<>();
         for (Ticket ticket : tickets) {
             if (map.containsKey(ticket.getPassengerId())) {
@@ -119,32 +165,35 @@ public class TravelServiceImpl implements TravelService {
                 map.put(ticket.getPassengerId(), value + 1);
             } else {
                 map.put(ticket.getPassengerId(), 1);
-            } 
+            }
         }
         return map;
     }
 
+    /**
+     * Calculate customers who didn't purchase tickets
+     */
     @Override
     public void noPurchasedTickets() {
         List<Customer> customers = customerRepository.read();
 
-        HashMap<Integer, Integer> hashMap = purchasedTicketsByCustomers();
+        HashMap<Integer, Integer> hashMap = purchasedTicketsByCustomers(); // We save in a hashmap customers who purchased tickets (calculated by other method)
         for (Customer customer : customers)
-            if (!hashMap.containsKey(customer.getId())) {
-                System.out.println(customer.getId() + "  " + customer.getName() + "  " + customer.getEmail() + "  " + customer.getNationality() + "  " + customer.getCategory());
+
+            if (!hashMap.containsKey(customer.getId())) { // Here we calculate to find customers who didn't purchase any ticket
+                System.out.println(customer.getId() + "  " + customer.getName() + "  " + customer.getEmail() + "  " + customer.getNationality() + "  " + customer.getCategory()); // print customer info
 
             }
     }
 
-    @Override
-    public void addItinerary(Itinerary itinerary) throws ItineraryException {
-
-        if ((itinerary.getDepartureAirportCode() == null) && (itinerary.getDestinationAirportCode() == null)) {
-            throw new ItineraryException(ExceptionCodes.AIRPORT_CODE_NOT_EXISTS);
-        }
-    }
 
 
+    /**
+     * Methods for page count&size
+     * @param pageCount
+     * @param pageSize
+     * @return
+     */
     @Override
     public List<Customer> findCustomers(int pageCount, int pageSize) {
         List<Customer> customers = customerRepository.read();
@@ -158,6 +207,12 @@ public class TravelServiceImpl implements TravelService {
         return returnCustomers;
     }
 
+    /**
+     * Methods for page count&size
+     * @param pageCount
+     * @param pageSize
+     * @return
+     */
     @Override
     public List<Itinerary> findItineraries(int pageCount, int pageSize) {
         List<Itinerary> itineraries = itineraryRepository.read();
@@ -171,6 +226,12 @@ public class TravelServiceImpl implements TravelService {
         return returnItineraries;
     }
 
+    /**
+     * Methods for page count&size
+     * @param pageCount
+     * @param pageSize
+     * @return
+     */
     @Override
     public List<Ticket> findTickets(int pageCount, int pageSize) {
         List<Ticket> tickets = ticketRepository.read();
@@ -184,6 +245,9 @@ public class TravelServiceImpl implements TravelService {
         return returnTickets;
     }
 
+    /**
+     * Method to print itineraries and their details
+     */
     @Override
     public void printItineraries() {
         List<Itinerary> itineraries = itineraryRepository.read();
@@ -193,6 +257,10 @@ public class TravelServiceImpl implements TravelService {
         }
     }
 
+
+    /**
+     * Method to print tickets and their details
+     */
     @Override
     public void printTickets() {
         List<Ticket> tickets = ticketRepository.read();
@@ -209,6 +277,9 @@ public class TravelServiceImpl implements TravelService {
     }
 
 
+    /**
+     * Method to print customers and their details
+     */
     @Override
     public void printCustomers() {
         List<Customer> customers = customerRepository.read();
@@ -218,6 +289,13 @@ public class TravelServiceImpl implements TravelService {
         }
     }
 
+    /**
+     * Calculate discount for each category and payment method
+     * @param amount
+     * @param ticket
+     * @param customer
+     * @return
+     */
     @Override
     public double ticketDiscount(double amount, Ticket ticket, Customer customer) {
         double discount;
@@ -237,28 +315,36 @@ public class TravelServiceImpl implements TravelService {
         return 0;
     }
 
+    /**
+     * Calculate maximum ticket purchased by customer
+     * @return
+     */
     public int mostTicketsPurchasedByCust() {
         List<Customer> customers = customerRepository.read();
         int maxValue;
 
-        HashMap<Integer, Integer> hashtable = purchasedTicketsByCustomers();
+        HashMap<Integer, Integer> hashtable = purchasedTicketsByCustomers(); // We take the map which contains the id of customers who purchased tickets
 
         maxValue = (Collections.max(hashtable.values()));
         for (Map.Entry<Integer, Integer> i : hashtable.entrySet()) {
             if (i.getValue() == maxValue)
                 for (Customer customer : customers) {
                     if (customer.getId() == i.getKey()) {
-                        return customer.getId();
+                        return customer.getId(); // Customer id with the most purchases will be returned and we will use it to retrieve customer data
                     }
                 }
         }
         return 0;
     }
 
+    /**
+     * Calculate the customer who purchased the most tickets
+     */
     @Override
     public void totalAmountOfTicketsPurchased() {
         List<Ticket> tickets = ticketRepository.read();
         List<Customer> customers = customerRepository.read();
+
         double sum = 0;
         int id = mostTicketsPurchasedByCust();
 
@@ -276,11 +362,17 @@ public class TravelServiceImpl implements TravelService {
     }
 
 
+    /**
+     * Calculate offered itineraries per destination and per departure
+     */
     @Override
     public void offeredItineraries(){
         List<Itinerary> itineraries = itineraryRepository.read();
+
+        // We use groupingBy and Collectors.counting to count how many times a value appears in our List
         Map<AirportCode, Long> departureMap = itineraries.stream().collect(Collectors.groupingBy(e -> e.getDepartureAirportCode(),Collectors.counting()));
         Map<AirportCode, Long> destinationMap = itineraries.stream().collect(Collectors.groupingBy(e -> e.getDestinationAirportCode(),Collectors.counting()));
+
         System.out.println("Offered itineraries per departure " + departureMap);
         System.out.println("Offered itineraries per destination " + destinationMap);
 

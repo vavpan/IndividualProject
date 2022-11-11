@@ -56,14 +56,13 @@ public class ReportMenu {
         switch (choice){
 
             case 0:
-
-                dataImport.insertCustomer();
+                dataImport.insertCustomer();  // We call this method to insert data for customers
                 travelService.printCustomers();
                 System.out.println("\n");
-                dataImport.insertItinerary();
+                dataImport.insertItinerary(); // We call this method to insert data for itineraries
                 travelService.printItineraries();
                 System.out.println("\n");
-                dataImport.insertTickets();
+                dataImport.insertTickets(); // We call this method to insert data for tickets
                 travelService.printTickets();
                 System.out.println("\n");
 
@@ -73,8 +72,8 @@ public class ReportMenu {
 
             case 1:
 
-                dataImport.insertCustomer();
-                dataImport.insertTickets();
+                dataImport.insertCustomer(); // We call this method to insert data for customers
+                dataImport.insertTickets(); // We call this method to insert data for tickets
                 System.out.println("Total number of tickets is: " + travelService.totalNumberOfTickets());
                 System.out.println("Total cost of tickets (Discounts and surcharges are included depends on the customer): " + travelService.totalCostOfTickets());
                 System.out.println("Total cost of tickets (No discounts or surcharges included): " + travelService.totalCostOfTicketsNoDiscount());
@@ -85,8 +84,7 @@ public class ReportMenu {
 
             case 2:
 
-                dataImport.insertItinerary();
-//                travelService.offeredItineraries();
+                dataImport.insertItinerary(); // We call this method to insert data for itineraries
                 travelService.offeredItineraries();
 
 
@@ -94,14 +92,14 @@ public class ReportMenu {
 
 
             case 3:
-                dataImport.insertCustomer();
-                dataImport.insertTickets();
+                dataImport.insertCustomer();  // We call this method to insert data for customers
+                dataImport.insertTickets(); // We call this method to insert data for tickets
                 travelService.totalAmountOfTicketsPurchased();
                 break;
 
             case 4:
-                dataImport.insertCustomer();
-                dataImport.insertTickets();
+                dataImport.insertCustomer(); // We call this method to insert data for customers
+                dataImport.insertTickets(); // We call this method to insert data for tickets
                 travelService.noPurchasedTickets();
 
                 break;
@@ -116,12 +114,13 @@ public class ReportMenu {
             case 6:
 
                 jsonFormatMenu();
+
                 break;
 
             case 7:
-                dataImport.insertCustomer();
-                dataImport.insertItinerary();
-                dataImport.insertTickets();
+                dataImport.insertCustomer(); // We call this method to insert data for customers
+                dataImport.insertItinerary(); // We call this method to insert data for itineraries
+                dataImport.insertTickets(); // We call this method to insert data for tickets
 
                 IoServices ioServices = new IoServiceImpl(customerRepository, itineraryRepository, ticketRepository);
                 try {
@@ -194,14 +193,14 @@ public class ReportMenu {
         switch (choice){
 
             case 1:
-                dataImport.insertCustomer();
+                dataImport.insertCustomer(); // We call this method to insert data for customers
                 List<Customer> customers = travelService.findCustomers(pageCount,pageSize);
                 System.out.println(new GsonBuilder().setPrettyPrinting().create().toJson(customers));
 
                 break;
 
             case 2:
-                dataImport.insertItinerary();
+                dataImport.insertItinerary(); // We call this method to insert data for itineraries
                 List<Itinerary> itineraries = travelService.findItineraries(pageCount,pageSize);
                 System.out.println(new GsonBuilder().setPrettyPrinting().create().toJson(itineraries));
 
@@ -209,7 +208,7 @@ public class ReportMenu {
                 break;
 
             case 3:
-                dataImport.insertTickets();
+                dataImport.insertTickets(); // We call this method to insert data for tickets
                 List<Ticket> tickets = travelService.findTickets(pageCount,pageSize);
                 System.out.println(new GsonBuilder().setPrettyPrinting().create().toJson(tickets));
 

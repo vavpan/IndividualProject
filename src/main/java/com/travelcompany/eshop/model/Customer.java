@@ -7,13 +7,13 @@ import com.travelcompany.eshop.enums.Category;
  */
 public class Customer extends PersistenceClass{
 
-
     private String name;
     private String email;
     private String address;
     private String nationality;
     private Category category;
 
+    // Default Constructor
     public Customer(){
 
     }
@@ -25,6 +25,7 @@ public class Customer extends PersistenceClass{
         this.category = category;
     }
 
+    // GETTERS/SETTERS METHODS
     public String getName() {
         return name;
     }

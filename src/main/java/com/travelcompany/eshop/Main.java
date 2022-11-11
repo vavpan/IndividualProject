@@ -10,9 +10,9 @@ import com.travelcompany.eshop.menu.ReportMenu;
 public class Main {
     public static void main(String[] args) {
 
-
+        // We create a ReportMenu Object to call our main menu method
         ReportMenu reportMenu = new ReportMenu();
-        reportMenu.menu();
+        reportMenu.menu(); // Main menu called
 
     }
 

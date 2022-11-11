@@ -25,7 +25,12 @@ public class DataImport {
     private final TicketRepository ticketRepository;
 
 
-
+    /**
+     * Constructor
+     * @param customerRepository
+     * @param itineraryRepository
+     * @param ticketRepository
+     */
     public DataImport(CustomerRepository customerRepository, ItineraryRepository itineraryRepository, TicketRepository ticketRepository) {
         this.customerRepository = customerRepository;
         this.itineraryRepository = itineraryRepository;
@@ -33,6 +38,9 @@ public class DataImport {
     }
 
 
+    /**
+     * Data for customers
+     */
     private final static String[] CUSTOMERS = {
             "Maria Iordanou, miordanou@mail.com , Athens , Greek , Individual",
             "Dimitriou Dimitrios , ddimitriou@mail.com , Athens , Greek , Individual",
@@ -45,6 +53,9 @@ public class DataImport {
             "Frederic Michel  , fmichel@mail.com  , Athens, French , Individual",
     };
 
+    /**
+     * Data for itineraries
+     */
     private final static String[] ITINERARIES = {
 
             "ATH, PAR, 22/02/2022 13:35 , SkyLines, 300",
@@ -59,6 +70,9 @@ public class DataImport {
 
     };
 
+    /**
+     * Data for tickets
+     */
     private final static String[] TICKETS = {
 
             "1, 2, Cash, 420",
@@ -73,6 +87,9 @@ public class DataImport {
 
     };
 
+    /**
+     * Customer data inserted
+     */
     public void insertCustomer(){
 
         for (String customerString : CUSTOMERS){
@@ -87,6 +104,9 @@ public class DataImport {
         }
     }
 
+    /**
+     * Itinerary data inserted
+     */
     public void insertItinerary(){
 
         for (String itineraryString : ITINERARIES){
@@ -103,7 +123,9 @@ public class DataImport {
 
 
 
-
+    /**
+     * Ticket data inserted
+     */
     public void insertTickets(){
 
         for (String ticketString: TICKETS){

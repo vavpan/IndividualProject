@@ -8,6 +8,7 @@ import com.travelcompany.eshop.enums.Category;
  */
 public class Business extends Customer{
 
+    // Default Constructor
     public Business() {
     }
 

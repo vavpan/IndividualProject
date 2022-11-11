@@ -7,6 +7,7 @@ public abstract class PersistenceClass {
 
     private int id;
 
+    // GETTERS/SETTERS METHODS
     public int getId() {
         return id;
     }

@@ -8,8 +8,6 @@ import java.util.List;
 
 public class ItineraryRepositoryImpl extends RepositoryImpl<Itinerary> implements ItineraryRepository {
 
-
-
     @Override
     public void update(int itineraryId, double price) {
         Itinerary itinerary =  read(itineraryId);
@@ -21,10 +19,6 @@ public class ItineraryRepositoryImpl extends RepositoryImpl<Itinerary> implement
     @Override
     public List<Itinerary> read(String itineraryName) {
         List<Itinerary> returnItineraries =  new ArrayList<>();
-//        for (Itinerary itinerary:read()){
-//            if (itinerary.getName()!=null && itinerary.getName().contains(itinerary) )
-//                returnProducts.add(itinerary) ;
-//        }
         return returnItineraries;
     }
 }
